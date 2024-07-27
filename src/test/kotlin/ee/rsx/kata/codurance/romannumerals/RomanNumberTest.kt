@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 class RomanNumberTest {
 
   @Test
-  fun `number 1 is roman numeral "I"`() {
+  fun `number 1 is roman numeral 'I'`() {
     1.assertIsRomanNumber("I")
   }
 

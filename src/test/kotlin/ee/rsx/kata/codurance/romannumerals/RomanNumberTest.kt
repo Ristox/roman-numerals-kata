@@ -14,6 +14,11 @@ class RomanNumberTest {
     1.assertIsRomanNumber("I")
   }
 
+  @Test
+  fun `number 2 is roman numeral 'II'`() {
+    2.assertIsRomanNumber("II")
+  }
+
   private fun Int.assertIsRomanNumber(roman: String) {
     assertThat("${RomanNumber(this)}").isEqualTo(roman)
   }

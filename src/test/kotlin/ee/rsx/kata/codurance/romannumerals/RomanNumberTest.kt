@@ -10,8 +10,12 @@ import org.junit.jupiter.api.Test
 class RomanNumberTest {
 
   @Test
-  fun `converts arabic number 1 to I`() {
-    assertThat(RomanNumber(1).toString()).isEqualTo("I")
+  fun `number 1 is roman numeral "I"`() {
+    1.assertIsRomanNumber("I")
+  }
+
+  private fun Int.assertIsRomanNumber(roman: String) {
+    assertThat("${RomanNumber(this)}").isEqualTo(roman)
   }
 
 }

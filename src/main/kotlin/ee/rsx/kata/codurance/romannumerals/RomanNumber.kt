@@ -1,4 +1,7 @@
 package ee.rsx.kata.codurance.romannumerals
 
-class RomanNumber() {
+class RomanNumber(value: Int) {
+  override fun toString(): String {
+    return super.toString()
+  }
 }

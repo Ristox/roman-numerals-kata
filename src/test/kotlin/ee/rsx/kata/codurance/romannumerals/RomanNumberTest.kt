@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 /**
-  https://www.codurance.com/katas/shopping-cart-kata
+  https://www.codurance.com/katas/roman-numerals
  **/
 
 class RomanNumberTest {

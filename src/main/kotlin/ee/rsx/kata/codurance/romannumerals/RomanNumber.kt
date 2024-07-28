@@ -8,26 +8,42 @@ class RomanNumber(private val value: Int) {
     }
   }
 
-  private val arabicToRomanNumber = linkedMapOf(
-    1 to "I",
+  private val arabicToRomanNumber: LinkedHashMap<Int, String> = linkedMapOf(
+    10 to "X",
     5 to "V",
-    10 to "X"
+    1 to "I"
   )
 
   override fun toString(): String {
-    return when {
-      value < 4 -> 1.asRoman(times = value)
-      value <= 5 -> 1.asRoman(times = 5 - value) + 5.asRoman()
-      value < 9 -> 5.asRoman() + 1.asRoman(times = value - 5)
-      value == 9 -> 1.asRoman() + 10.asRoman()
-
-      value <= 13 -> 10.asRoman() + 1.asRoman(times = value - 10)
-      value <= 15 -> 10.asRoman() + 1.asRoman(times = 15 - value) + 5.asRoman()
-      value < 19 -> 10.asRoman() + 5.asRoman() + 1.asRoman(times = value - 15)
-      value == 19 -> 10.asRoman() + 1.asRoman() + 10.asRoman()
-      else -> ""
-    }
+    return toRoman(value)
   }
+
+  private fun toRoman(value: Int, fromIndex: Int = 0): String {
+    if (value == 0) return ""
+
+    val arabic = arabicAt(fromIndex)
+
+    val roman = arabic.asRoman()
+    if (value == arabic) return roman
+
+    val remainder = value % arabic
+    if (remainder == value)
+      return toRoman(remainder, fromIndex + 1)
+
+    if (value == 4) {
+      return 1.asRoman() + 5.asRoman()
+    }
+
+    if (value == 9) {
+      return 1.asRoman() + 10.asRoman()
+    }
+
+    val multiplier = (value - remainder) / arabic
+    return roman.repeat(multiplier) + toRoman(remainder, fromIndex + 1)
+  }
+
+  private fun arabicAt(index: Int) =
+    arabicToRomanNumber.keys.elementAt(index)
 
   private fun Int.asRoman(times: Int? = null) =
     arabicToRomanNumber.getValue(this).repeat(times ?: 1)

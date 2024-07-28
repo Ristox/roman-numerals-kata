@@ -1,16 +1,30 @@
 package ee.rsx.kata.codurance.romannumerals
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
+import kotlin.test.Test
+import kotlin.test.assertFailsWith
 
 /**
   https://www.codurance.com/katas/roman-numerals
  **/
 
 class RomanNumberTest {
+
+
+  @Test
+  fun `value of 0 (zero) is an illegal roman numeral`() {
+    val test: () -> Unit = { RomanNumber(0) }
+
+    assertFailsWith<IllegalArgumentException>(
+      "Value of 0 (zero) is an illegal roman numeral",
+      test
+    )
+  }
 
   @ParameterizedTest
   @MethodSource("singleValues")

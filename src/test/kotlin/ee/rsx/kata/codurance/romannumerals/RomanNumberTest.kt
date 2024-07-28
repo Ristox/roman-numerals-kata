@@ -1,7 +1,6 @@
 package ee.rsx.kata.codurance.romannumerals
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -15,7 +14,7 @@ class RomanNumberTest {
 
   @ParameterizedTest
   @MethodSource("singleValues")
-  fun `number $number is roman numeral $roman` (number: Int, roman: String) {
+  fun `single number is a roman numeral of` (number: Int, roman: String) {
     number.assertIsRomanNumber(roman)
   }
 

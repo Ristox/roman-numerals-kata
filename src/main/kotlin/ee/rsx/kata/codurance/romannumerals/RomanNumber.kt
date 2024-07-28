@@ -16,20 +16,19 @@ class RomanNumber(private val value: Int) {
 
   override fun toString(): String {
     return when {
-      value < 4 -> 1.asRoman().repeat(value)
-      value == 4 -> 1.asRoman() + 5.asRoman()
-      value == 5 -> 5.asRoman()
-      value < 9 -> 5.asRoman() + 1.asRoman().repeat(value - 5)
+      value < 4 -> 1.asRoman(times = value)
+      value <= 5 -> 1.asRoman(times = 5 - value) + 5.asRoman()
+      value < 9 -> 5.asRoman() + 1.asRoman(times = value - 5)
       value == 9 -> 1.asRoman() + 10.asRoman()
 
-      value in 10..13 -> 10.asRoman() + 1.asRoman().repeat(value - 10)
-      value <= 15 -> 10.asRoman() + 1.asRoman().repeat(15 - value) +  5.asRoman()
-      value < 19 -> 10.asRoman() + 5.asRoman() + 1.asRoman().repeat(value - 15)
+      value <= 13 -> 10.asRoman() + 1.asRoman(times = value - 10)
+      value <= 15 -> 10.asRoman() + 1.asRoman(times = 15 - value) + 5.asRoman()
+      value < 19 -> 10.asRoman() + 5.asRoman() + 1.asRoman(times = value - 15)
       value == 19 -> 10.asRoman() + 1.asRoman() + 10.asRoman()
       else -> ""
     }
   }
 
-  private fun Int.asRoman() =
-    arabicToRomanNumber.getValue(this)
+  private fun Int.asRoman(times: Int? = null) =
+    arabicToRomanNumber.getValue(this).repeat(times ?: 1)
 }

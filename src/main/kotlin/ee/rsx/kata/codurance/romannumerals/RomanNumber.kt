@@ -39,7 +39,7 @@ class RomanNumber(private val value: Int) {
       return 1.asRoman() + 10.asRoman()
     }
 
-    if (value >= 40) {
+    if (value in 40..49) {
       return 10.asRoman() + 50.asRoman() + toRoman(value - 40, fromIndex + 1)
     }
 

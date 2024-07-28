@@ -2,6 +2,12 @@ package ee.rsx.kata.codurance.romannumerals
 
 class RomanNumber(private val value: Int) {
 
+  init {
+    require(value != 0) {
+      "Value of 0 (zero) is an illegal roman numeral"
+    }
+  }
+
   private val arabicToRomanNumber = linkedMapOf(
     1 to "I",
     5 to "V",

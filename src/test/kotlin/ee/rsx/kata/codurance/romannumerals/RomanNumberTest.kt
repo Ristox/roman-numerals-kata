@@ -25,6 +25,16 @@ class RomanNumberTest {
     )
   }
 
+  @Test
+  fun `negative value (ie -10) is an illegal roman numeral`() {
+    val test: () -> Unit = { RomanNumber(-10) }
+
+    assertFailsWith<IllegalArgumentException>(
+      "Value of 10 is an illegal roman numeral",
+      test
+    )
+  }
+
   @ParameterizedTest
   @MethodSource("singleValues")
   fun `single number is a roman numeral of` (number: Int, roman: String) {

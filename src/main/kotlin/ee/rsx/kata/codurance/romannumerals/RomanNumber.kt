@@ -3,9 +3,6 @@ package ee.rsx.kata.codurance.romannumerals
 class RomanNumber(private val value: Int) {
 
   init {
-    require(value != 0) {
-      "Value of 0 (zero) is an illegal roman numeral"
-    }
     require(value > 0) {
       "Value of $value is an illegal roman numeral"
     }

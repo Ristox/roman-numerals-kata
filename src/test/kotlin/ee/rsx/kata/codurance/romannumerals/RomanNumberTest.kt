@@ -20,7 +20,7 @@ class RomanNumberTest {
     val test: () -> Unit = { RomanNumber(0) }
 
     assertFailsWith<IllegalArgumentException>(
-      "Value of 0 (zero) is an illegal roman numeral",
+      "Value of 0 is an illegal roman numeral",
       test
     )
   }

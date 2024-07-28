@@ -4,7 +4,15 @@ class RomanNumber(private val value: Int) {
   override fun toString(): String {
     return when (value) {
       1 -> "I"
-      else -> "II"
+      2 -> "II"
+      3 -> "III"
+      4 -> "IV"
+      5 -> "V"
+      6 -> "VI"
+      7 -> "VII"
+      8 -> "VIII"
+      9 -> "IX"
+      else -> ""
     }
   }
 }

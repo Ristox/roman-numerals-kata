@@ -6,6 +6,9 @@ class RomanNumber(private val value: Int) {
     require(value != 0) {
       "Value of 0 (zero) is an illegal roman numeral"
     }
+    require(value > 0) {
+      "Value of $value is an illegal roman numeral"
+    }
   }
 
   private val arabicToRomanNumber = linkedMapOf(

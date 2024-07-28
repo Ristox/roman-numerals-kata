@@ -59,6 +59,12 @@ class RomanNumberTest {
     number.assertIsRomanNumeral(roman)
   }
 
+  @ParameterizedTest
+  @MethodSource("fortiesValues")
+  fun `forties number is a roman numeral of`(number: Int, roman: String) {
+    number.assertIsRomanNumeral(roman)
+  }
+
   private fun Int.assertIsRomanNumeral(roman: String) {
     assertThat("${RomanNumber(this)}").isEqualTo(roman)
   }
@@ -118,6 +124,21 @@ class RomanNumberTest {
       Arguments.of(38, "XXXVIII"),
       Arguments.of(39, "XXXIX")
     )
+
+    @JvmStatic
+    fun fortiesValues(): Stream<Arguments> = Stream.of(
+      Arguments.of(40, "XL"),
+      Arguments.of(41, "XLI"),
+      Arguments.of(42, "XLII"),
+      Arguments.of(43, "XLIII"),
+      Arguments.of(44, "XLIV"),
+      Arguments.of(45, "XLV"),
+      Arguments.of(46, "XLVI"),
+      Arguments.of(47, "XLVII"),
+      Arguments.of(48, "XLVIII"),
+      Arguments.of(49, "XLIX")
+    )
+
   }
 }
 

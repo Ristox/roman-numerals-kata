@@ -15,7 +15,6 @@ class RomanNumber(private val value: Int) {
   )
 
   override fun toString(): String {
-
     return when {
       value < 4 -> 1.asRoman().repeat(value)
       value == 4 -> 1.asRoman() + 5.asRoman()
@@ -26,5 +25,6 @@ class RomanNumber(private val value: Int) {
     }
   }
 
-  private fun Int.asRoman() = arabicToRomanNumber.getValue(this)
+  private fun Int.asRoman() =
+    arabicToRomanNumber.getValue(this)
 }

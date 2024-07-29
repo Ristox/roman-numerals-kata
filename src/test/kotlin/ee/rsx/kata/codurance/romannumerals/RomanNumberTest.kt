@@ -113,6 +113,12 @@ class RomanNumberTest {
     number.assertIsRomanNumeral(roman)
   }
 
+  @ParameterizedTest
+  @MethodSource("valuesInTheFourHundreds")
+  fun `number in 400-s is a roman numeral of`(number: Int, roman: String) {
+    number.assertIsRomanNumeral(roman)
+  }
+
   private fun Int.assertIsRomanNumeral(roman: String) {
     assertThat("${RomanNumber(this)}").isEqualTo(roman)
   }
@@ -317,6 +323,19 @@ class RomanNumberTest {
       Arguments.of(393, "CCCXCIII"),
       Arguments.of(396, "CCCXCVI"),
       Arguments.of(399, "CCCXCIX"),
+    )
+
+    @JvmStatic
+    fun valuesInTheFourHundreds(): Stream<Arguments> = Stream.of(
+      Arguments.of(400, "CD"),
+      Arguments.of(410, "CDX"),
+      Arguments.of(444, "CDXLIV"),
+      Arguments.of(450, "CDL"),
+      Arguments.of(478, "CDLXXVIII"),
+      Arguments.of(490, "CDXC"),
+      Arguments.of(493, "CDXCIII"),
+      Arguments.of(495, "CDXCV"),
+      Arguments.of(499, "CDXCIX"),
     )
   }
 }

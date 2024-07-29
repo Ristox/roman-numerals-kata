@@ -119,6 +119,12 @@ class RomanNumberTest {
     number.assertIsRomanNumeral(roman)
   }
 
+  @ParameterizedTest
+  @MethodSource("valuesBetweenFiveHundredsAndEightHundreds")
+  fun `number between 500-s and 800-s is a roman numeral of`(number: Int, roman: String) {
+    number.assertIsRomanNumeral(roman)
+  }
+
   private fun Int.assertIsRomanNumeral(roman: String) {
     assertThat("${RomanNumber(this)}").isEqualTo(roman)
   }
@@ -336,6 +342,21 @@ class RomanNumberTest {
       Arguments.of(493, "CDXCIII"),
       Arguments.of(495, "CDXCV"),
       Arguments.of(499, "CDXCIX"),
+    )
+
+    @JvmStatic
+    fun valuesBetweenFiveHundredsAndEightHundreds(): Stream<Arguments> = Stream.of(
+      Arguments.of(501, "DI"),
+      Arguments.of(555, "DLV"),
+      Arguments.of(599, "DXCIX"),
+      Arguments.of(600, "DC"),
+      Arguments.of(649, "DCXLIX"),
+      Arguments.of(688, "DCLXXXVIII"),
+      Arguments.of(777, "DCCLXXVII"),
+      Arguments.of(800, "DCCC"),
+      Arguments.of(842, "DCCCXLII"),
+      Arguments.of(888, "DCCCLXXXVIII"),
+      Arguments.of(899, "DCCCXCIX"),
     )
   }
 }

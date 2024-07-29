@@ -9,7 +9,7 @@ import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
 /**
-  https://www.codurance.com/katas/roman-numerals
+https://www.codurance.com/katas/roman-numerals
  **/
 
 class RomanNumberTest {
@@ -98,6 +98,12 @@ class RomanNumberTest {
   @ParameterizedTest
   @MethodSource("valuesInTheOneHundreds")
   fun `number in 100-s is a roman numeral of`(number: Int, roman: String) {
+    number.assertIsRomanNumeral(roman)
+  }
+
+  @ParameterizedTest
+  @MethodSource("valuesInTheTwoHundreds")
+  fun `number in 200-s is a roman numeral of`(number: Int, roman: String) {
     number.assertIsRomanNumeral(roman)
   }
 
@@ -267,6 +273,25 @@ class RomanNumberTest {
       Arguments.of(193, "CXCIII"),
       Arguments.of(196, "CXCVI"),
       Arguments.of(199, "CXCIX"),
+    )
+
+    @JvmStatic
+    fun valuesInTheTwoHundreds(): Stream<Arguments> = Stream.of(
+      Arguments.of(200, "CC"),
+      Arguments.of(201, "CCI"),
+      Arguments.of(209, "CCIX"),
+      Arguments.of(217, "CCXVII"),
+      Arguments.of(238, "CCXXXVIII"),
+      Arguments.of(249, "CCXLIX"),
+      Arguments.of(250, "CCL"),
+      Arguments.of(277, "CCLXXVII"),
+      Arguments.of(283, "CCLXXXIII"),
+      Arguments.of(285, "CCLXXXV"),
+      Arguments.of(288, "CCLXXXVIII"),
+      Arguments.of(291, "CCXCI"),
+      Arguments.of(293, "CCXCIII"),
+      Arguments.of(296, "CCXCVI"),
+      Arguments.of(299, "CCXCIX"),
     )
   }
 }

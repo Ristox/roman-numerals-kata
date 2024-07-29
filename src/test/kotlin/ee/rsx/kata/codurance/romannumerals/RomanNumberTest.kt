@@ -89,6 +89,12 @@ class RomanNumberTest {
     number.assertIsRomanNumeral(roman)
   }
 
+  @ParameterizedTest
+  @MethodSource("ninetiesValues")
+  fun `nineties number is a roman numeral of`(number: Int, roman: String) {
+    number.assertIsRomanNumeral(roman)
+  }
+
   private fun Int.assertIsRomanNumeral(roman: String) {
     assertThat("${RomanNumber(this)}").isEqualTo(roman)
   }
@@ -217,6 +223,20 @@ class RomanNumberTest {
       Arguments.of(87, "LXXXVII"),
       Arguments.of(88, "LXXXVIII"),
       Arguments.of(89, "LXXXIX")
+    )
+
+    @JvmStatic
+    fun ninetiesValues(): Stream<Arguments> = Stream.of(
+      Arguments.of(90, "XC"),
+      Arguments.of(91, "XCI"),
+      Arguments.of(92, "XCII"),
+      Arguments.of(93, "XCIII"),
+      Arguments.of(94, "XCIV"),
+      Arguments.of(95, "XCV"),
+      Arguments.of(96, "XCVI"),
+      Arguments.of(97, "XCVII"),
+      Arguments.of(98, "XCVIII"),
+      Arguments.of(99, "XCIX")
     )
   }
 }

@@ -35,6 +35,16 @@ class RomanNumberTest {
     )
   }
 
+  @Test
+  fun `too large value (over 5999) is not supported`() {
+    val test: () -> Unit = { RomanNumber(6000) }
+
+    assertFailsWith<IllegalArgumentException>(
+      "Value of 6000 is not supported (maximum is 5999)",
+      test
+    )
+  }
+
   @ParameterizedTest
   @MethodSource("singleValues")
   fun `single number is a roman numeral of`(number: Int, roman: String) {

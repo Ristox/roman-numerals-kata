@@ -9,6 +9,7 @@ class RomanNumber(private val value: Int) {
   }
 
   private val arabicToRomanNumber: LinkedHashMap<Int, String> = linkedMapOf(
+    1000 to "M",
     500 to "D",
     100 to "C",
     50 to "L",
@@ -51,6 +52,10 @@ class RomanNumber(private val value: Int) {
 
     if (value in 400..499) {
       return 100.asRoman() + 500.asRoman() + toRoman(value - 400, fromIndex + 1)
+    }
+
+    if (value in 900..999) {
+      return 100.asRoman() + 1000.asRoman() + toRoman(value - 900, fromIndex + 1)
     }
 
     val multiplier = (value - remainder) / arabic

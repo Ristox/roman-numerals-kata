@@ -6,6 +6,10 @@ class RomanNumber(private val value: Int) {
     require(value > 0) {
       "Value of $value is an illegal roman numeral"
     }
+
+    require(value < 6000) {
+      "Value of $value is not supported (maximum is 5999)"
+    }
   }
 
   private val arabicToRomanNumber: LinkedHashMap<Int, String> = linkedMapOf(

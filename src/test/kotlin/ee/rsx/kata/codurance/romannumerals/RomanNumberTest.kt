@@ -131,6 +131,12 @@ class RomanNumberTest {
     number.assertIsRomanNumeral(roman)
   }
 
+  @ParameterizedTest
+  @MethodSource("valuesInTheThousands")
+  fun `number in 1000-s is a roman numeral of`(number: Int, roman: String) {
+    number.assertIsRomanNumeral(roman)
+  }
+
   private fun Int.assertIsRomanNumeral(roman: String) {
     assertThat("${RomanNumber(this)}").isEqualTo(roman)
   }
@@ -374,6 +380,24 @@ class RomanNumberTest {
       Arguments.of(974, "CMLXXIV"),
       Arguments.of(988, "CMLXXXVIII"),
       Arguments.of(999, "CMXCIX"),
+    )
+
+    @JvmStatic
+    fun valuesInTheThousands(): Stream<Arguments> = Stream.of(
+      Arguments.of(1111, "MCXI"),
+      Arguments.of(1548, "MDXLVIII"),
+      Arguments.of(1549, "MDXLIX"),
+      Arguments.of(1687, "MDCLXXXVII"),
+      Arguments.of(1699, "MDCXCIX"),
+      Arguments.of(2500, "MMD"),
+      Arguments.of(2489, "MMCDLXXXIX"),
+      Arguments.of(3888, "MMMDCCCLXXXVIII"),
+      Arguments.of(3979, "MMMCMLXXIX"),
+      Arguments.of(2990, "MMCMXC"),
+      Arguments.of(2999, "MMCMXCIX"),
+      Arguments.of(4999, "MMMMCMXCIX"),
+      Arguments.of(5999, "MMMMMCMXCIX"),
+      Arguments.of(3949, "MMMCMXLIX"),
     )
   }
 }

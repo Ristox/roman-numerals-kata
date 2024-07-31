@@ -14,7 +14,6 @@ https://www.codurance.com/katas/roman-numerals
 
 class RomanNumberTest {
 
-
   @Test
   fun `value of 0 (zero) is an illegal roman numeral`() {
     val test: () -> Unit = { RomanNumber(0) }
@@ -411,4 +410,3 @@ class RomanNumberTest {
     )
   }
 }
-

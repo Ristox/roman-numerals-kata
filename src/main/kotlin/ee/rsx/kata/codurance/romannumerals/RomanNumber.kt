@@ -22,9 +22,7 @@ class RomanNumber(private val value: Int) {
     1 to "I"
   )
 
-  override fun toString(): String {
-    return toRoman(value)
-  }
+  override fun toString(): String = toRoman(value)
 
   private fun toRoman(value: Int, fromIndex: Int = 0): String {
     if (value == 0) return ""
@@ -48,7 +46,7 @@ class RomanNumber(private val value: Int) {
     }
 
     val multiplier = (value - remainder) / arabic
-    return arabic.asRoman().repeat(multiplier) + toRoman(remainder, fromIndex + 1)
+    return arabic.asRoman(multiplier) + toRoman(remainder, fromIndex + 1)
   }
 
   private fun arabicAt(index: Int) =

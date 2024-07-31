@@ -30,8 +30,6 @@ class RomanNumber(private val value: Int) {
     if (value == 0) return ""
 
     val arabic = arabicAt(fromIndex)
-    val roman = arabic.asRoman()
-
     val remainder = value % arabic
 
     if (fromIndex > 0) {
@@ -50,7 +48,7 @@ class RomanNumber(private val value: Int) {
     }
 
     val multiplier = (value - remainder) / arabic
-    return roman.repeat(multiplier) + toRoman(remainder, fromIndex + 1)
+    return arabic.asRoman().repeat(multiplier) + toRoman(remainder, fromIndex + 1)
   }
 
   private fun arabicAt(index: Int) =

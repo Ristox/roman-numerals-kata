@@ -34,25 +34,21 @@ class RomanNumber(private val value: Int) {
 
     val remainder = value % arabic
 
-    if (value == 4) {
-      return 1.asRoman() + 5.asRoman()
+    if (fromIndex > 0) {
+      if (value >= arabic * 4) {
+        val previousArabic = arabicAt(fromIndex - 1)
+        return arabic.asRoman() + previousArabic.asRoman() + toRoman(remainder, fromIndex + 1)
+      }
     }
 
     if (value == 9) {
       return 1.asRoman() + 10.asRoman()
     }
 
-    if (value in 40..49) {
-      return 10.asRoman() + 50.asRoman() + toRoman(value - 40, fromIndex + 1)
-    }
-
     if (value in 90..99) {
       return 10.asRoman() + 100.asRoman() + toRoman(value - 90, fromIndex + 1)
     }
 
-    if (value in 400..499) {
-      return 100.asRoman() + 500.asRoman() + toRoman(value - 400, fromIndex + 1)
-    }
 
     if (value in 900..999) {
       return 100.asRoman() + 1000.asRoman() + toRoman(value - 900, fromIndex + 1)

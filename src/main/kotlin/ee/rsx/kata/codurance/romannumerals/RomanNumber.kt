@@ -12,7 +12,7 @@ class RomanNumber(private val value: Int) {
     }
   }
 
-  private val arabicToRomanNumber: LinkedHashMap<Int, String> = linkedMapOf(
+  private val arabicToRomanLiteral: LinkedHashMap<Int, String> = linkedMapOf(
     1000 to "M",
     500 to "D",
     100 to "C",
@@ -22,9 +22,9 @@ class RomanNumber(private val value: Int) {
     1 to "I"
   )
 
-  override fun toString(): String = toRoman(value)
+  override fun toString(): String = toRomanNumeral(value)
 
-  private fun toRoman(value: Int, fromIndex: Int = 0): String {
+  private fun toRomanNumeral(value: Int, fromIndex: Int = 0): String {
     if (value == 0) return ""
 
     val arabic = arabicAt(fromIndex)
@@ -33,25 +33,25 @@ class RomanNumber(private val value: Int) {
     if (fromIndex > 0) {
       val previousArabic = arabicAt(fromIndex - 1)
       if (value >= 4 * arabic) {
-        return arabic.asRoman() + previousArabic.asRoman() + toRoman(remainder, fromIndex + 1)
+        return arabic.asRomanLiteral() + previousArabic.asRomanLiteral() + toRomanNumeral(remainder, fromIndex + 1)
       }
 
-      if (fromIndex < arabicToRomanNumber.size - 1) {
+      if (fromIndex < arabicToRomanLiteral.size - 1) {
         val nextArabic = arabicAt(fromIndex + 1)
         if (value >= 9 * nextArabic) {
           val reducedValue = value - (previousArabic - nextArabic)
-          return nextArabic.asRoman() + previousArabic.asRoman() + toRoman(reducedValue, fromIndex + 1)
+          return nextArabic.asRomanLiteral() + previousArabic.asRomanLiteral() + toRomanNumeral(reducedValue, fromIndex + 1)
         }
       }
     }
 
     val multiplier = (value - remainder) / arabic
-    return arabic.asRoman(multiplier) + toRoman(remainder, fromIndex + 1)
+    return arabic.asRomanLiteral(multiplier) + toRomanNumeral(remainder, fromIndex + 1)
   }
 
   private fun arabicAt(index: Int) =
-    arabicToRomanNumber.keys.elementAt(index)
+    arabicToRomanLiteral.keys.elementAt(index)
 
-  private fun Int.asRoman(times: Int? = null) =
-    arabicToRomanNumber.getValue(this).repeat(times ?: 1)
+  private fun Int.asRomanLiteral(times: Int? = null) =
+    arabicToRomanLiteral.getValue(this).repeat(times ?: 1)
 }
